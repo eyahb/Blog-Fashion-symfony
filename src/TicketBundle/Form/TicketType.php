@@ -1,32 +1,26 @@
 <?php
 
-namespace ForumBundle\Form;
+namespace TicketBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CommentaireForumType extends AbstractType
+class TicketType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('texte',TextareaType::class ,[
-            'label' => 'Commentaire',
-            'attr'  => [
-                'class' => 'form-control',
-            ]
-        ]);
+        $builder->add('reporter')->add('reporterMail')->add('reclamationAbout')->add('priority')->add('reporterType')->add('description');
     }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ForumBundle\Entity\CommentaireForum'
+            'data_class' => 'TicketBundle\Entity\Ticket'
         ));
     }
 
@@ -35,7 +29,7 @@ class CommentaireForumType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'forumbundle_commentaireforum';
+        return 'ticketbundle_ticket';
     }
 
 

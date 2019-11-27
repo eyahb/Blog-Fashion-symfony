@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Tickets list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Reporter</th>
+                <th>Reportermail</th>
+                <th>Reclamationabout</th>
+                <th>Priority</th>
+                <th>Reportertype</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ticket in tickets %}
+            <tr>
+                <td><a href="{{ path('ticket_show', { 'id': ticket.id }) }}">{{ ticket.id }}</a></td>
+                <td>{{ ticket.reporter }}</td>
+                <td>{{ ticket.reporterMail }}</td>
+                <td>{{ ticket.reclamationAbout }}</td>
+                <td>{{ ticket.priority }}</td>
+                <td>{{ ticket.reporterType }}</td>
+                <td>{{ ticket.description }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('ticket_show', { 'id': ticket.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('ticket_edit', { 'id': ticket.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('ticket_new') }}">Create a new ticket</a>
+        </li>
+    </ul>
+{% endblock %}
