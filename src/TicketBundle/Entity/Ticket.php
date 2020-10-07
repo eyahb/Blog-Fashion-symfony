@@ -15,11 +15,27 @@ class Ticket
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="idReporter", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private $idReporter;
+
+    /**
+     * @return int
+     */
+    public function getIdReporter()
+    {
+        return $this->idReporter;
+    }
+
+    /**
+     * @param int $idReporter
+     */
+    public function setIdReporter($idReporter)
+    {
+        $this->idReporter = $idReporter;
+    }
 
     /**
      * @var string
@@ -27,6 +43,29 @@ class Ticket
      * @ORM\Column(name="reporter", type="string", length=255)
      */
     private $reporter;
+
+    /**
+     * @var int
+     *
+     * @ORM\ManyToOne(targetEntity="Report_issue")
+     */
+    private $id;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
     /**
      * @var string
@@ -62,17 +101,6 @@ class Ticket
      * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
-
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set reporter
